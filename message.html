@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Message Tree | Why It Matters</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <nav class="navbar">
+    <div class="container nav-inner">
+      <div class="logo">
+        <img src="logo2.png" alt="logo" height="50" align="right">
+      </div>
+      <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="issue.html">The Issue</a>
+        <a href="why.html">Why It Matters</a>
+        <a class="menubold" href="message.html">MESSAGE TREE</a>
+      </div>
+    </div>
+  </nav>
+
+<section class="message-hero">
+  <div class="message-hero-content">
+    <div class="eyebrow">Send Gratitude</div>
+    <h1>Message Tree</h1>
+    <p>
+      Send words of gratitude and hope to doctors and nurses serving
+      communities around the world.
+    </p>
+  </div>
+</section>
+
+<section class="message-tree-layout">
+
+  <div class="tree-visual-area">
+    <img src="tree1.png" alt="Message Tree" class="message-tree-image">
+
+    <div class="message-leaves-layer" id="leavesLayer">
+      <div class="message-leaf leaf-1"><span>Thanks for your hard work.</span></div>
+      <div class="message-leaf leaf-2"><span>Your work gives hope.</span></div>
+      <div class="message-leaf leaf-3"><span>You are not forgotten.</span></div>
+      <div class="message-leaf leaf-4"><span>Thank you for protecting lives.</span></div>
+      <div class="message-leaf leaf-5"><span>You are making the world a better place.</span></div>
+     
+      
+    </div>
+  </div>
+
+  <div class="message-form-panel">
+    <div class="eyebrow">Participate</div>
+    <h2>Send a Message</h2>
+    <p>
+      Write a short message of gratitude for doctors and nurses.
+      Your message will appear as a new leaf on the tree.
+    </p>
+
+ <form id="messageForm">
+
+  <textarea
+    id="messageInput"
+    name="message"
+    placeholder="Write your message of gratitude here..."
+    required
+  ></textarea>
+
+  <button type="submit">
+    Send Message for Review
+  </button>
+
+  <p id="formStatus" class="form-note"></p>
+
+</form>
+
+
+<p class="form-note">
+  Your message will be sent to the project owner for review.
+  Approved messages may later appear as leaves on the Message Tree.
+</p>
+
+
+    <div class="leaf-counter" id="leafCounter">
+      Leaves of Gratitude: 5
+    </div>
+  </div>
+
+</section>
+
+
+  <footer class="footer">
+    <div class="container footer-grid">
+
+      <div class="footer-about">
+        <h3>Message Tree</h3>
+        <p>
+          A digital space where people send gratitude and hope to doctors and nurses
+          serving underserved communities around the world.
+        </p>
+      </div>
+
+      <div class="footer-links">
+        <h4>Explore</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="issue.html">The Issue</a></li>
+          <li><a href="why.html">Why It Matters</a></li>
+          <li><a href="message.html">Message Tree</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-message">
+        <h4>Project Message</h4>
+        <p>
+          For those who keep showing up.
+          Your care, your effort, and your presence matter.
+        </p>
+      </div>
+
+    </div>
+
+    <div class="footer-bottom">
+      <p>© 2026 Message Tree Project — Designed for awareness, empathy, and connection.</p>
+    </div>
+  </footer>
+
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+
+<script>
+
+emailjs.init("6JLDwNakWfM0r6Nvi");
+
+const form = document.getElementById("messageForm");
+const status = document.getElementById("formStatus");
+
+form.addEventListener("submit", function(event){
+
+    event.preventDefault();
+
+    status.textContent = "Sending...";
+
+    const message = document.getElementById("messageInput").value;
+
+    emailjs.send(
+        "service_zwtsa3m",
+        "template_eh4cf3u",
+        {
+            message: message
+        }
+    )
+    .then(function(){
+
+        status.textContent =
+            "Thank you! Your message was sent for review.";
+
+        form.reset();
+
+    })
+    .catch(function(error){
+
+        status.textContent =
+            "Sorry, something went wrong. Please try again.";
+
+        console.log(error);
+
+    });
+
+});
+
+</script>
+
+</body>
+</html>
